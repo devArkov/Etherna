@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Login page content -->
+
+{% include 'inc/_breadcrumbs.html' %}
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+
+            <div class="span12">
+                <form method="post">
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <button class="btn btn-theme btn-medium margintop10" type="submit">Login</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--/  Login page content -->
+{% endblock content %}

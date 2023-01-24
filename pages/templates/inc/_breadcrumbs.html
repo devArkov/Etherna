@@ -1,6 +1,8 @@
-{% url 'home' as home_url %}
-{% url 'about' as about_url %}
-{% url 'contact' as contact_url %}
+{% url 'pages:home' as home_url %}
+{% url 'pages:about' as about_url %}
+{% url 'pages:contact' as contact_url %}
+{% url 'accounts:login' as login_url %}
+{% url 'accounts:profile' as profile_url %}
 
 <section id="inner-headline">
     <div class="container">
@@ -8,18 +10,27 @@
             <div class="span12">
                 <div class="inner-heading">
                     <ul class="breadcrumb">
-                        <li><a href="{% url 'home' %}">Home</a> <i class="icon-angle-right"></i></li>
-<!--                        <li><a href="#">Pages</a> <i class="icon-angle-right"></i></li>-->
+                        <li><a href="{% url 'pages:home' %}">Home</a> <i class="icon-angle-right"></i></li>
                         {% if request.path == about_url %}
                             <li class="active">About</li>
                         {% elif request.path == contact_url %}
                             <li class="active">Contact</li>
+                        {% elif request.path == login_url %}
+                            <li><a href="#">Accounts</a> <i class="icon-angle-right"></i></li>
+                            <li class="active">Login</li>
+                        {% elif request.path == profile_url %}
+                            <li><a href="#">Accounts</a> <i class="icon-angle-right"></i></li>
+                            <li class="active">Profile</li>
                         {% endif %}
                     </ul>
                         {% if request.path == about_url %}
                             <h2>About us</h2>
                         {% elif request.path == contact_url %}
                             <h2>Get in touch</h2>
+                        {% elif request.path == login_url %}profile_url
+                            <h2>Login</h2>
+                        {% elif request.path == profile_url %}
+                            <h2>{{ user.username | capfirst }}'s profile</h2>
                         {% endif %}
                 </div>
             </div>

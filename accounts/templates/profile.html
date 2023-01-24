@@ -1,0 +1,45 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Profile page content -->
+
+{% include 'inc/_breadcrumbs.html' %}
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+
+            <div class="span12">
+                {% with profile=user.profile %}
+                    {% if profile %}
+                        <div>
+                            <h3>Hi, {{ profile.persona|default:'' }} (@{{ user.username | capfirst }})!</h3>
+                        </div>
+                        <div>
+                                <strong>Bio:</strong>
+                                <p>{{ profile.bio }}</p>
+                        </div>
+                        {% with website=profile.website|default:'' %}
+                            {% if website %}
+                                <p><strong>Website: </strong><a href="{{ website }}">{{ website }}</a></p>
+                                <div>
+                                    <p><strong>Interests:</strong></p>
+                                    <ul>
+                                        {% for interest in profile.interests.all %}
+                                            <li>{{ interest }}{% if not forloop.last %},{% else %}.{% endif %}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--/  Profile page content -->
+{% endblock content %}

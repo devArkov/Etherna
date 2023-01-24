@@ -1,6 +1,7 @@
-{% url 'home' as home_url %}
-{% url 'about' as about_url %}
-{% url 'contact' as contact_url %}
+{% url 'pages:home' as home_url %}
+{% url 'pages:about' as about_url %}
+{% url 'pages:contact' as contact_url %}
+{% url 'accounts:login' as login_url %}
 <nav>
     <ul class="nav topnav">
         <li class="{% if request.path == home_url %} active {% endif %}">
@@ -18,8 +19,20 @@
         <li class="{% if request.path == contact_url %} active {% endif %}">
             <a href="{{ contact_url }}">Contact </a>
         </li>
-        <li class="{% if request.path == contact_url %} active {% endif %}">
-            <a href="{{ contact_url }}"><i class="icon-user"></i> User </a>
+        {% if user.is_authenticated %}
+        <li class="dropdown{% if request.path == contact_url %} active {% endif %}">
+            <a href="{% url 'accounts:profile' %}"><i class="icon-user"></i> {{ user.username | capfirst }} <i class="icon-angle-down"></i></a>
+            <ul class="dropdown-menu">
+                <li><a href="{% url 'accounts:logout' %}"><i class="icon-signout"></i> Logout</a></li>
+            </ul>
         </li>
+        {% else %}
+        <li class="dropdown{% if request.path == contact_url %} active {% endif %}">
+            <a href="{{ login_url }}"><i class="icon-signin"></i> Login <i class="icon-angle-down"></i></a>
+            <ul class="dropdown-menu">
+                <li><a href="portfolio-3cols.html"><i class="icon-unlock"></i> Register</a></li>
+            </ul>
+        </li>
+        {% endif %}
     </ul>
 </nav>

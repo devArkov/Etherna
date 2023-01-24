@@ -63,15 +63,16 @@
             <div class="row nomargin">
                 <div class="span4">
                     <div class="logo">
-                        <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt="Logo" /></a>
+                        <a href="{% url 'pages:home' %}"><img src="{% static 'img/logo.png' %}" alt="Logo" /></a>
                     </div>
                 </div>
                 <div class="span8">
                     <div class="navbar navbar-static-top">
+                        <!-- Navigation -->
                         <div class="navigation">
                             {% include 'inc/_navbar.html' %}
                         </div>
-                        <!-- end navigation -->
+                        <!-- / Navigation -->
                     </div>
                 </div>
             </div>
