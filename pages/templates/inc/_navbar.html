@@ -3,6 +3,8 @@
 {% url 'pages:contact' as contact_url %}
 {% url 'accounts:login' as login_url %}
 {% url 'accounts:profile' as profile_url %}
+{% url 'accounts:profile' as profile_url %}
+{% url 'blog' as blog_url %}
 <nav>
     <ul class="nav topnav">
         <li class="{% if request.path == home_url %} active {% endif %}">
@@ -14,8 +16,8 @@
         <li>
             <a href="#">Portfolio </a>
         </li>
-        <li class="dropdown">
-            <a href="#">Blog </a>
+        <li class="{% if request.path == blog_url %} active {% endif %}">
+            <a href="{{ blog_url }}">Blog </a>
         </li>
         <li class="{% if request.path == contact_url %} active {% endif %}">
             <a href="{{ contact_url }}">Contact </a>

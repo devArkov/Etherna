@@ -3,6 +3,7 @@
 {% url 'pages:contact' as contact_url %}
 {% url 'accounts:login' as login_url %}
 {% url 'accounts:profile' as profile_url %}
+{% url 'blog' as blog_url %}
 
 <section id="inner-headline">
     <div class="container">
@@ -21,6 +22,8 @@
                         {% elif request.path == profile_url %}
                             <li><a href="#">Accounts</a> <i class="icon-angle-right"></i></li>
                             <li class="active">Profile</li>
+                        {% elif request.path == blog_url %}
+                            <li class="active">Blog</li>
                         {% endif %}
                     </ul>
                         {% if request.path == about_url %}
@@ -31,6 +34,8 @@
                             <h2>Login</h2>
                         {% elif request.path == profile_url %}
                             <h2>{{ user.username | capfirst }}'s profile</h2>
+                        {% elif request.path == blog_url %}
+                            <h2>Our news blog</h2>
                         {% endif %}
                 </div>
             </div>

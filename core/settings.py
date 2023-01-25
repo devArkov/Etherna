@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'pages',
     'accounts',
     'blog',
+    # Addons
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -43,6 +45,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -53,6 +56,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'pages/templates'),
             os.path.join(BASE_DIR, 'accounts/templates'),
+            os.path.join(BASE_DIR, 'blog/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -122,9 +126,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Media settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Auth settings
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'accounts:profile'
-LOGOUT_REDIRECT_URL = ':pages:home'
+LOGOUT_REDIRECT_URL = 'pages:home'
+
+
+# Debug toolbar
+INTERNAL_IPS = ['127.0.0.1']
