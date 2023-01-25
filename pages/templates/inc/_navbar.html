@@ -2,6 +2,7 @@
 {% url 'pages:about' as about_url %}
 {% url 'pages:contact' as contact_url %}
 {% url 'accounts:login' as login_url %}
+{% url 'accounts:profile' as profile_url %}
 <nav>
     <ul class="nav topnav">
         <li class="{% if request.path == home_url %} active {% endif %}">
@@ -20,7 +21,7 @@
             <a href="{{ contact_url }}">Contact </a>
         </li>
         {% if user.is_authenticated %}
-        <li class="dropdown{% if request.path == contact_url %} active {% endif %}">
+        <li class="dropdown{% if request.path == profile_url %} active {% endif %}">
             <a href="{% url 'accounts:profile' %}"><i class="icon-user"></i> {{ user.username | capfirst }} <i class="icon-angle-down"></i></a>
             <ul class="dropdown-menu">
                 <li><a href="{% url 'accounts:logout' %}"><i class="icon-signout"></i> Logout</a></li>
