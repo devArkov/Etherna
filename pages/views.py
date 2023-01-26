@@ -28,3 +28,7 @@ class Contact(TemplateView):
         context = super().get_context_data()
         context['title'] = 'Contact'
         return context
+
+
+def handle_not_found(request, exception):
+    return render(request, '404.html')

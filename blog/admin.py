@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Tag, Author, Post
+from .models import Category, Tag, Author, Post, Comment
 from django.utils.safestring import mark_safe
 
 
@@ -38,3 +38,8 @@ class PostAdmin(admin.ModelAdmin):
         return mark_safe('<img src="/static/img/no_photo.jpg" width="100">')
 
     thumbnail.short_description = 'Photo'
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass

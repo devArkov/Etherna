@@ -39,6 +39,9 @@ class Category(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
+    def get_absolute_url(self):
+        return reverse_lazy('category', kwargs={'slug': self.slug})
+
     def __str__(self):
         return self.title
 
@@ -56,6 +59,9 @@ class Tag(models.Model):
         ordering = ['title']
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
+
+    def get_absolute_url(self):
+        return reverse_lazy('сфеупщкн', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title
@@ -120,6 +126,11 @@ class Comment(models.Model):
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     rating = models.SmallIntegerField(default=0)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
 
     def __str__(self):
         return self.commentUser.username

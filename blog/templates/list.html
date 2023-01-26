@@ -5,7 +5,7 @@
 {% block content %}
 <!-- Blog single list content -->
 
-{% include 'inc/_breadcrumbs.html' %}
+{% include 'inc/_headline.html' %}
 
 <section id="content">
     <div class="container">
@@ -35,9 +35,10 @@
                             <div class="meta-post">
                                 <ul>
                                     <li><i class="icon-file"></i></li>
-                                    <li>By <a href="#" class="author">{{ post.author }}</a></li>
+                                    <li>Автор: <a href="#" class="author">{{ post.author }}</a></li>
                                     <li>On <a href="#" class="date">{{ post.created_at | date:'j E Y' }}</a></li>
-                                    <li>Tags: <a href="#">Design</a>, <a href="#">Blog</a></li>
+                                    <li>Category: <a href="{{ post.category.get_absolute_url }}">{{ post.category }}</a>
+                                    <li>Теги: {% for tag in post.tags.all %}<a href="#">{{ tag.title }}</a>{% if not forloop.last %}, {% else %}{% endif %}{% endfor %}</li>
                                 </ul>
                             </div>
                             <div class="post-entry">
@@ -54,13 +55,7 @@
                 {% endfor %}
 
                 {% if is_paginated %}
-                {% include 'inc/_pagination.html' %}
-<!--                    <div id="pagination">-->
-<!--                    <span class="all">Page 1 of 3</span>-->
-<!--                    <span class="current">1</span>-->
-<!--                    <a href="#" class="inactive">2</a>-->
-<!--                    <a href="#" class="inactive">3</a>-->
-<!--                </div>-->
+                    {% include 'inc/_pagination.html' %}
                 {% endif %}
             </div>
         </div>
